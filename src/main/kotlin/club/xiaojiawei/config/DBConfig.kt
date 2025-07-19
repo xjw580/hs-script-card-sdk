@@ -1,6 +1,7 @@
 package club.xiaojiawei.config
 
-import club.xiaojiawei.util.isFalse
+import club.xiaojiawei.hsscriptbase.config.log
+import club.xiaojiawei.hsscriptbase.util.isFalse
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.jdbc.datasource.DriverManagerDataSource
 import java.nio.file.Path

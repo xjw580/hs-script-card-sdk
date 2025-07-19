@@ -1,8 +1,8 @@
 package club.xiaojiawei.bean
 
-import club.xiaojiawei.enums.RunModeEnum
-import club.xiaojiawei.enums.StepEnum
-import club.xiaojiawei.enums.WarPhaseEnum
+import club.xiaojiawei.hsscriptbase.enums.RunModeEnum
+import club.xiaojiawei.hsscriptbase.enums.StepEnum
+import club.xiaojiawei.hsscriptbase.enums.WarPhaseEnum
 
 /**
  * @author 肖嘉威

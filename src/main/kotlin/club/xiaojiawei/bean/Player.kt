@@ -3,11 +3,11 @@ package club.xiaojiawei.bean
 import club.xiaojiawei.bean.Player.Companion.UNKNOWN_PLAYER
 import club.xiaojiawei.bean.area.*
 import club.xiaojiawei.config.ENABLE_PLAYER_LOG
-import club.xiaojiawei.config.log
+import club.xiaojiawei.hsscriptbase.config.log
 import club.xiaojiawei.enums.ZoneEnum
 import club.xiaojiawei.mapper.AreaMapper
 import club.xiaojiawei.mapper.PlayerMapper
-import club.xiaojiawei.util.isTrue
+import club.xiaojiawei.hsscriptbase.util.isTrue
 import java.util.function.BiConsumer
 
 /**

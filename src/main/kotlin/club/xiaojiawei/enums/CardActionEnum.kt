@@ -4,8 +4,8 @@ import club.xiaojiawei.CardAction
 import club.xiaojiawei.bean.Card
 import club.xiaojiawei.bean.War
 import club.xiaojiawei.util.CardUtil
-import club.xiaojiawei.util.randomSelect
-import club.xiaojiawei.util.randomSelectOrNull
+import club.xiaojiawei.hsscriptbase.util.randomSelect
+import club.xiaojiawei.hsscriptbase.util.randomSelectOrNull
 
 /**
  * @author 肖嘉威

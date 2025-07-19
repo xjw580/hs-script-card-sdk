@@ -2,7 +2,7 @@ package club.xiaojiawei.util
 
 import club.xiaojiawei.bean.DBCard
 import club.xiaojiawei.config.DBConfig
-import club.xiaojiawei.config.log
+import club.xiaojiawei.hsscriptbase.config.log
 import org.springframework.jdbc.core.BeanPropertyRowMapper
 
 /**

@@ -3,10 +3,10 @@ package club.xiaojiawei.bean
 import club.xiaojiawei.bean.War.Companion.UNKNOWN_WAR
 import club.xiaojiawei.bean.area.Area
 import club.xiaojiawei.config.ENABLE_WAR_LOG
-import club.xiaojiawei.config.log
-import club.xiaojiawei.enums.StepEnum
+import club.xiaojiawei.hsscriptbase.config.log
+import club.xiaojiawei.hsscriptbase.enums.StepEnum
 import club.xiaojiawei.mapper.WarMapper
-import club.xiaojiawei.util.isTrue
+import club.xiaojiawei.hsscriptbase.util.isTrue
 
 /**
  * @author 肖嘉威

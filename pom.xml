@@ -5,10 +5,11 @@
     <parent>
         <groupId>club.xiaojiawei</groupId>
         <artifactId>hs-script</artifactId>
-        <version>1.0.0</version>
+        <version>v4.8.0.1</version>
     </parent>
 
     <artifactId>hs-script-card-sdk</artifactId>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <name>Hearthstone-Script-Card-SDK</name>

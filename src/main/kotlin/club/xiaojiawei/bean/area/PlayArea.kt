@@ -3,9 +3,9 @@ package club.xiaojiawei.bean.area
 import club.xiaojiawei.bean.Card
 import club.xiaojiawei.bean.Player
 import club.xiaojiawei.config.ENABLE_AREA_LOG
-import club.xiaojiawei.config.log
+import club.xiaojiawei.hsscriptbase.config.log
 import club.xiaojiawei.enums.CardTypeEnum
-import club.xiaojiawei.util.isTrue
+import club.xiaojiawei.hsscriptbase.util.isTrue
 
 /**
  * 战场

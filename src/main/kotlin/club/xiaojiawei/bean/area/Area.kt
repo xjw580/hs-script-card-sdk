@@ -5,9 +5,9 @@ import club.xiaojiawei.bean.MutableCardList
 import club.xiaojiawei.bean.Player
 import club.xiaojiawei.bean.area.Area.Companion.UNKNOWN_AREA
 import club.xiaojiawei.config.ENABLE_AREA_LOG
-import club.xiaojiawei.config.log
+import club.xiaojiawei.hsscriptbase.config.log
 import club.xiaojiawei.enums.ZoneEnum
-import club.xiaojiawei.util.isTrue
+import club.xiaojiawei.hsscriptbase.util.isTrue
 import java.util.*
 
 /**

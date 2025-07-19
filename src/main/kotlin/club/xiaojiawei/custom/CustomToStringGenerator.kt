@@ -1,6 +1,6 @@
 package club.xiaojiawei.custom
 
-import club.xiaojiawei.config.log
+import club.xiaojiawei.hsscriptbase.config.log
 import java.lang.reflect.Field
 
 /**

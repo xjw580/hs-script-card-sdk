@@ -1,12 +1,12 @@
 package club.xiaojiawei.mcts
 
 import club.xiaojiawei.bean.InitAction
-import club.xiaojiawei.bean.LRunnable
+import club.xiaojiawei.hsscriptbase.bean.LRunnable
 import club.xiaojiawei.bean.MCTSArg
 import club.xiaojiawei.bean.War
-import club.xiaojiawei.config.CALC_THREAD_POOL
-import club.xiaojiawei.config.log
-import club.xiaojiawei.util.randomSelect
+import club.xiaojiawei.hsscriptbase.config.CALC_THREAD_POOL
+import club.xiaojiawei.hsscriptbase.config.log
+import club.xiaojiawei.hsscriptbase.util.randomSelect
 import java.util.*
 import java.util.concurrent.CompletableFuture
 import java.util.concurrent.TimeUnit

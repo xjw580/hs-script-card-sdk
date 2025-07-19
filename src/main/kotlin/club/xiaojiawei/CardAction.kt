@@ -4,11 +4,11 @@ import club.xiaojiawei.bean.*
 import club.xiaojiawei.bean.Entity.Companion.UNKNOWN_ENTITY_NAME
 import club.xiaojiawei.bean.area.HandArea
 import club.xiaojiawei.bean.area.isValid
-import club.xiaojiawei.config.log
+import club.xiaojiawei.hsscriptbase.config.log
 import club.xiaojiawei.enums.CardActionEnum
 import club.xiaojiawei.enums.CardTypeEnum
 import club.xiaojiawei.util.CardUtil
-import club.xiaojiawei.util.isTrue
+import club.xiaojiawei.hsscriptbase.util.isTrue
 import java.util.concurrent.atomic.AtomicLong
 import java.util.function.Supplier
 import kotlin.math.max

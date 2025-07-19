@@ -293,13 +293,13 @@ open class BaseCard : Entity() {
     var overload = 0
 
     /**
-     * 在场上的回合数，双方[club.xiaojiawei.enums.StepEnum.MAIN_READY]阶段更新，首次进入战场该值为0
+     * 在场上的回合数，双方[club.xiaojiawei.hsscriptbase.enums.StepEnum.MAIN_READY]阶段更新，首次进入战场该值为0
      */
     @Volatile
     var numTurnsInPlay = 0
 
     /**
-     * 在手上的回合数，我方[club.xiaojiawei.enums.StepEnum.MAIN_START]和[club.xiaojiawei.enums.StepEnum.MAIN_NEXT]阶段更新，首次进入手中该值为0
+     * 在手上的回合数，我方[club.xiaojiawei.hsscriptbase.enums.StepEnum.MAIN_START]和[club.xiaojiawei.hsscriptbase.enums.StepEnum.MAIN_NEXT]阶段更新，首次进入手中该值为0
      */
     @Volatile
     var numTurnsInHand = 0
