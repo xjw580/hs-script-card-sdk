@@ -1,5 +1,6 @@
 package club.xiaojiawei.util
 
+import club.xiaojiawei.hsscriptcardsdk.util.CardDBUtil
 import org.junit.jupiter.api.Test
 import kotlin.test.assertTrue
 

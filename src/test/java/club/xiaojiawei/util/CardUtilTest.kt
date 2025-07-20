@@ -1,5 +1,6 @@
 package club.xiaojiawei.util
 
+import club.xiaojiawei.hsscriptcardsdk.util.CardUtil
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
