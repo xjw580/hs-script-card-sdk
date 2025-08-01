@@ -1,7 +1,6 @@
 package club.xiaojiawei.hsscriptcardsdk.config
 
 import club.xiaojiawei.hsscriptbase.config.log
-import club.xiaojiawei.hsscriptbase.const.BuildInfo
 import club.xiaojiawei.hsscriptbase.util.isFalse
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.jdbc.datasource.DriverManagerDataSource
@@ -23,14 +22,14 @@ object DBConfig {
             setDriverClassName("org.sqlite.JDBC")
             var dbPath = Path.of(System.getProperty("user.dir"), DB_NAME)
             dbPath.exists().isFalse {
-                dbPath = Path.of(System.getProperty("user.dir"), BuildInfo.ARTIFACT_ID).resolve(DB_NAME)
+                dbPath = Path.of(System.getProperty("user.dir")).parent.resolve("hs-script-app").resolve(DB_NAME)
             }
             dbPath.exists().isFalse {
                 dbPath = Path.of(System.getProperty("user.dir")).parent.resolve(DB_NAME)
             }
             dbPath.exists().isFalse {
                 dbPath = Path.of(System.getProperty("user.dir"), DB_NAME)
-                log.warn { "不存在默认的卡牌数据库" }
+                log.error { "不存在默认的卡牌数据库" }
             }
             url = "jdbc:sqlite:${dbPath}"
         }

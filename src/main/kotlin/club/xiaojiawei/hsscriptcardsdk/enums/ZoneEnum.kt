@@ -12,6 +12,10 @@ enum class ZoneEnum(val comment: String) {
     SETASIDE("除外区"),
     SECRET("奥秘区"),
     GRAVEYARD("墓地"),
-    REMOVEDFROMGAME("移除区");
+    REMOVEDFROMGAME("移除区"),
+    COSMETIC("装饰区"),
+    UNKNOW("未知"),
+
+    ;
 
 }

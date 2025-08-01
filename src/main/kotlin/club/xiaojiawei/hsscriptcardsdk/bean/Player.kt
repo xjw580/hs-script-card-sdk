@@ -1,20 +1,13 @@
 package club.xiaojiawei.hsscriptcardsdk.bean
 
-import club.xiaojiawei.hsscriptcardsdk.bean.Player.Companion.UNKNOWN_PLAYER
-import club.xiaojiawei.hsscriptcardsdk.config.ENABLE_PLAYER_LOG
 import club.xiaojiawei.hsscriptbase.config.log
+import club.xiaojiawei.hsscriptbase.util.isTrue
+import club.xiaojiawei.hsscriptcardsdk.bean.Player.Companion.UNKNOWN_PLAYER
+import club.xiaojiawei.hsscriptcardsdk.bean.area.*
+import club.xiaojiawei.hsscriptcardsdk.config.ENABLE_PLAYER_LOG
 import club.xiaojiawei.hsscriptcardsdk.enums.ZoneEnum
 import club.xiaojiawei.hsscriptcardsdk.mapper.AreaMapper
 import club.xiaojiawei.hsscriptcardsdk.mapper.PlayerMapper
-import club.xiaojiawei.hsscriptbase.util.isTrue
-import club.xiaojiawei.hsscriptcardsdk.bean.area.Area
-import club.xiaojiawei.hsscriptcardsdk.bean.area.DeckArea
-import club.xiaojiawei.hsscriptcardsdk.bean.area.GraveyardArea
-import club.xiaojiawei.hsscriptcardsdk.bean.area.HandArea
-import club.xiaojiawei.hsscriptcardsdk.bean.area.PlayArea
-import club.xiaojiawei.hsscriptcardsdk.bean.area.RemovedfromgameArea
-import club.xiaojiawei.hsscriptcardsdk.bean.area.SecretArea
-import club.xiaojiawei.hsscriptcardsdk.bean.area.SetasideArea
 import java.util.function.BiConsumer
 
 /**
@@ -35,6 +28,7 @@ class Player(
     deckArea: DeckArea? = null,
     setasideArea: SetasideArea? = null,
     removedfromgameArea: RemovedfromgameArea? = null,
+    cosmeticArea: CosmeticArea? = null,
     war: War? = null,
 ) : Entity() {
 
@@ -62,6 +56,8 @@ class Player(
     val setasideArea: SetasideArea
 
     val removedfromgameArea: RemovedfromgameArea
+
+    val cosmeticArea: CosmeticArea
 
     @Volatile
     var maxResources = 10
@@ -147,6 +143,8 @@ class Player(
                 ZoneEnum.SECRET -> secretArea
                 ZoneEnum.GRAVEYARD -> graveyardArea
                 ZoneEnum.REMOVEDFROMGAME -> removedfromgameArea
+                ZoneEnum.COSMETIC -> removedfromgameArea
+                else -> null
             }
         }
     }
@@ -262,6 +260,7 @@ class Player(
         this.deckArea = deckArea ?: DeckArea(allowLog = allowLog, player = this)
         this.setasideArea = setasideArea ?: SetasideArea(allowLog = allowLog, player = this)
         this.removedfromgameArea = removedfromgameArea ?: RemovedfromgameArea(allowLog = allowLog, player = this)
+        this.cosmeticArea = cosmeticArea ?: CosmeticArea(allowLog = allowLog, player = this)
     }
 
     companion object {
