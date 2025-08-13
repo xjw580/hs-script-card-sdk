@@ -22,6 +22,6 @@ interface CardPlugin : Plugin {
         /**
          * 最低兼容版本
          */
-        const val MINIMUM_COMPATIBLE_VERSION = "1.0.0"
+        const val MINIMUM_COMPATIBLE_VERSION = "1.0.1"
     }
 }
