@@ -1,20 +1,14 @@
 package club.xiaojiawei.hsscriptcardsdk
 
+import club.xiaojiawei.hsscriptbase.config.log
+import club.xiaojiawei.hsscriptbase.util.isTrue
+import club.xiaojiawei.hsscriptcardsdk.bean.*
 import club.xiaojiawei.hsscriptcardsdk.bean.Entity.Companion.UNKNOWN_ENTITY_NAME
 import club.xiaojiawei.hsscriptcardsdk.bean.area.HandArea
 import club.xiaojiawei.hsscriptcardsdk.bean.area.isValid
-import club.xiaojiawei.hsscriptbase.config.log
 import club.xiaojiawei.hsscriptcardsdk.enums.CardActionEnum
 import club.xiaojiawei.hsscriptcardsdk.enums.CardTypeEnum
 import club.xiaojiawei.hsscriptcardsdk.util.CardUtil
-import club.xiaojiawei.hsscriptbase.util.isTrue
-import club.xiaojiawei.hsscriptcardsdk.bean.AttackAction
-import club.xiaojiawei.hsscriptcardsdk.bean.Card
-import club.xiaojiawei.hsscriptcardsdk.bean.CardInfo
-import club.xiaojiawei.hsscriptcardsdk.bean.PlayAction
-import club.xiaojiawei.hsscriptcardsdk.bean.Player
-import club.xiaojiawei.hsscriptcardsdk.bean.PowerAction
-import club.xiaojiawei.hsscriptcardsdk.bean.War
 import java.util.concurrent.atomic.AtomicLong
 import java.util.function.Supplier
 import kotlin.math.max
@@ -624,6 +618,24 @@ abstract class CardAction(
     }
 
     /**
+     * 抉择
+     * 注意：先打出抉择卡牌再调用此方法
+     * @param index 需要选择的卡牌下标
+     */
+    fun chooseOne(index: Int, isPause: Boolean = false): CardAction? {
+        if (isStop()) return null
+        if (execChooseOne(index)) {
+            if (isPause) {
+                this.delay()
+            } else {
+                delay(SHORT_PAUSE_TIME)
+            }
+            return this
+        }
+        return null
+    }
+
+    /**
      * 锻造
      * 执行前判断[club.xiaojiawei.hsscriptcardsdk.bean.BaseCard.isForge]
      * @return 为null表示执行失败
@@ -738,6 +750,11 @@ abstract class CardAction(
     protected abstract fun execTrade(): Boolean
 
     /**
+     * 执行抉择
+     */
+    protected abstract fun execChooseOne(index: Int): Boolean
+
+    /**
      * 执行锻造
      */
     protected abstract fun execForge(): Boolean
@@ -783,6 +800,8 @@ abstract class CardAction(
         override fun execLaunch(): Boolean = commonAction?.execLClick() == true
 
         override fun execTrade(): Boolean = commonAction?.execTrade() == true
+
+        override fun execChooseOne(index: Int): Boolean = commonAction?.execChooseOne(index) == true
 
         override fun execForge(): Boolean = commonAction?.execForge() == true
     }

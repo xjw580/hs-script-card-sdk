@@ -59,6 +59,10 @@ class TestCardAction : CardAction() {
         return true
     }
 
+    override fun execChooseOne(index: Int): Boolean {
+        return true
+    }
+
     override fun execForge(): Boolean {
         return true
     }
