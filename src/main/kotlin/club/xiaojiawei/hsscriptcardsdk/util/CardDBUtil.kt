@@ -11,7 +11,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper
  */
 object CardDBUtil {
 
-    fun queryCardByName(name: String, limit: Int = 100, offset: Int = 0, precise: Boolean = true): MutableList<DBCard> {
+    fun queryCardByName(name: String, limit: Int = 100, offset: Int = 0, precise: Boolean = true): List<DBCard> {
         runCatching {
             if (precise) {
                 DBConfig.CARD_DB.query(
@@ -34,12 +34,12 @@ object CardDBUtil {
             return it
         }.onFailure {
             log.error(it) { "查询卡牌异常" }
-            return mutableListOf()
+            return emptyList()
         }
-        return mutableListOf()
+        return emptyList()
     }
 
-    fun queryCardById(cardId: String, limit: Int = 100, offset: Int = 0, precise: Boolean = true): MutableList<DBCard> {
+    fun queryCardById(cardId: String, limit: Int = 100, offset: Int = 0, precise: Boolean = true): List<DBCard> {
         runCatching {
             if (precise) {
                 DBConfig.CARD_DB.query(
@@ -62,9 +62,46 @@ object CardDBUtil {
             return it
         }.onFailure {
             log.error(it) { "查询卡牌异常" }
-            return mutableListOf()
+            return emptyList()
         }
-        return mutableListOf()
+        return emptyList()
+    }
+
+    fun queryCardByDbfId(dbfId: Int): DBCard? {
+        runCatching {
+            DBConfig.CARD_DB.query(
+                "select * from cards where dbfId = ? limit 1",
+                BeanPropertyRowMapper(DBCard::class.java),
+                dbfId
+            )
+        }.onSuccess {
+            return it.firstOrNull()
+        }.onFailure {
+            log.error(it) { "查询卡牌异常" }
+            return null
+        }
+        return null
+    }
+
+    fun queryCardsByDbfIds(dbfIds: List<Int>): Map<Int, DBCard> {
+        if (dbfIds.isEmpty()) return emptyMap()
+        
+        val result = mutableMapOf<Int, DBCard>()
+        runCatching {
+            val placeholders = dbfIds.joinToString(",") { "?" }
+            DBConfig.CARD_DB.query(
+                "select * from cards where dbfId in ($placeholders)",
+                BeanPropertyRowMapper(DBCard::class.java),
+                *dbfIds.toTypedArray()
+            )
+        }.onSuccess { cards ->
+            cards.forEach { card ->
+                result[card.dbfId] = card
+            }
+        }.onFailure {
+            log.error(it) { "批量查询卡牌异常" }
+        }
+        return result
     }
 
 }

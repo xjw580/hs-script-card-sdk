@@ -4,7 +4,7 @@ import club.xiaojiawei.hsscriptcardsdk.bean.area.DeckArea
 import club.xiaojiawei.hsscriptcardsdk.bean.area.HandArea
 import club.xiaojiawei.hsscriptcardsdk.bean.area.PlayArea
 import club.xiaojiawei.hsscriptcardsdk.bean.area.SecretArea
-import club.xiaojiawei.hsscriptcardsdk.data.CARD_WEIGHT_TRIE
+import club.xiaojiawei.hsscriptcardsdk.data.CARD_DATA_TRIE
 import club.xiaojiawei.hsscriptcardsdk.enums.CardTypeEnum
 import kotlin.math.log
 import kotlin.math.max
@@ -102,7 +102,7 @@ open class WarScoreCalculatorBuilder {
         isMe: Boolean,
     ): Double {
         if (card.isAlive()) {
-            val cardRatio = CARD_WEIGHT_TRIE[card.cardId]?.weight ?: 1.0
+            val cardRatio = CARD_DATA_TRIE[card.cardId]?.weight ?: 1.0
             val atc = max(card.atc, 0).toDouble()
             val blood = max(card.blood(), 0)
             val ration: Double =

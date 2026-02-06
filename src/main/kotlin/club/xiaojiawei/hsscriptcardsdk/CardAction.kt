@@ -383,7 +383,7 @@ abstract class CardAction(
             for (cardActionEnum in actionEnums) {
                 res = cardActionEnum.playExec(card, effectType, card.area.player.war) xor res
             }
-            if (!res) {
+            if (!res && actionEnums.isEmpty()) {
                 power()
             }
         }

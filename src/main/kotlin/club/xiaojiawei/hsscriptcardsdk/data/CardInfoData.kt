@@ -4,11 +4,9 @@ import club.xiaojiawei.hsscriptcardsdk.bean.CardInfo
 import club.xiaojiawei.hsscriptbase.bean.LikeTrie
 
 /**
+ * 合并的卡牌数据存储，包含卡牌信息和权重
+ * key: [club.xiaojiawei.hsscriptcardsdk.bean.Card.cardId], value: [CardInfo]
  * @author 肖嘉威
- * @date 2025/6/9 17:00
+ * @date 2026/2/2
  */
-
-/**
- * key: [club.xiaojiawei.hsscriptcardsdk.bean.Card.cardId],value: [CardInfo]
- */
-val CARD_INFO_TRIE = LikeTrie<CardInfo>()
+val CARD_DATA_TRIE = LikeTrie(CardInfo())
