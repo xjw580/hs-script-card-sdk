@@ -81,8 +81,9 @@ abstract class Area(
         }
     }
 
-    protected fun addCard(card: Card?, pos: Int) {
+    protected open fun addCard(card: Card?, pos: Int) {
         card ?: return
+
         if (pos >= cards.size) {
             cards.add(card)
         } else {

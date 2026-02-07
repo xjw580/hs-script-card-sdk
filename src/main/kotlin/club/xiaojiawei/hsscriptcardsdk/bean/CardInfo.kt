@@ -38,4 +38,8 @@ class CardInfo(
      * 换牌权重
      */
     var changeWeight: Double = 0.0
-)
+){
+    override fun toString(): String {
+        return "playActions:${playActions},powerActions:${powerActions}"
+    }
+}

@@ -1,7 +1,9 @@
 package club.xiaojiawei.hsscriptcardsdk.bean.area
 
+import club.xiaojiawei.hsscriptbase.config.log
 import club.xiaojiawei.hsscriptcardsdk.bean.Card
 import club.xiaojiawei.hsscriptcardsdk.bean.Player
+import club.xiaojiawei.hsscriptcardsdk.data.CardInfoData
 import club.xiaojiawei.hsscriptcardsdk.enums.CardTypeEnum
 import kotlin.random.Random
 
@@ -11,7 +13,8 @@ import kotlin.random.Random
  * @author 肖嘉威
  * @date 2022/11/27 15:02
  */
-class HandArea(allowLog: Boolean = false, player: Player) : Area(allowLog = allowLog, maxSize = 10, player = player) {
+class HandArea(allowLog: Boolean = false, player: Player, var parseCard: Boolean = false) :
+    Area(allowLog = allowLog, maxSize = 10, player = player) {
 
     fun drawCard(): Card? {
         val deckArea = player.deckArea
@@ -34,4 +37,17 @@ class HandArea(allowLog: Boolean = false, player: Player) : Area(allowLog = allo
         return null
     }
 
+    override fun addCard(card: Card?, pos: Int) {
+        super.addCard(card, pos)
+        //        解析卡牌描述
+        if (parseCard && card != null) {
+            try {
+                if (card.cardType === CardTypeEnum.SPELL || card.isBattlecry) {
+                    CardInfoData.indexCard(card.cardId)
+                }
+            } catch (e: Exception) {
+                log.error(e) { "解析手中卡牌出错" }
+            }
+        }
+    }
 }
