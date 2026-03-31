@@ -24,6 +24,7 @@ private val errorLogCount = AtomicLong()
 
 abstract class CardAction(
     createDefaultAction: Boolean = true,
+    val common: Boolean = false,
 ) {
     protected var depth = 0
         set(value) {

@@ -2,6 +2,7 @@ package club.xiaojiawei.hsscriptcardsdk.data
 
 import club.xiaojiawei.hsscriptbase.bean.LikeTrie
 import club.xiaojiawei.hsscriptbase.config.log
+import club.xiaojiawei.hsscriptcardsdk.CardAction
 import club.xiaojiawei.hsscriptcardsdk.bean.CardInfo
 import club.xiaojiawei.hsscriptcardsdk.bean.DBCard
 import club.xiaojiawei.hsscriptcardsdk.cardparser.CardDescriptionParser
@@ -39,14 +40,7 @@ object CardInfoData {
 
     fun parsePlayAction(dbCard: DBCard): List<CardActionEnum> {
         val cardActions = CardDescriptionParser.parseAsCardActionEnum(dbCard)
-        log.info {
-            """
-                        解析卡牌【${dbCard.name}】
-                        cardId：${dbCard.cardId}
-                        描述：${dbCard.text.replace("\n", "")}
-                        行为：${cardActions}
-                    """.trimIndent()
-        }
+        printParseInfo(dbCard, cardActions)
         return cardActions
     }
 
@@ -55,16 +49,19 @@ object CardInfoData {
         likeTrie.getNoDefault(cardId) ?: let {
             CardDBUtil.queryCardById(cardId).firstOrNull()?.let {
                 val cardActions = CardDescriptionParser.parseAsCardActionEnum(it)
-                log.info {
-                    """
-                        解析卡牌【${it.name}】
-                        cardId：${cardId}
-                        描述：${it.text.replace("\n", "")}
-                        行为：${cardActions}
-                    """.trimIndent()
-                }
+                printParseInfo(it, cardActions)
                 likeTrie[cardId] = CardInfo(playActions = cardActions, powerActions = parsePowerAction(it))
             }
+        }
+    }
+
+    private fun printParseInfo(dbCard: DBCard, cardActions: List<CardActionEnum>){
+        log.info {
+            """
+                行为-解析卡牌【${dbCard.name}:${dbCard.cardId}】
+                描述：${dbCard.text.replace("\n", "")}
+                $cardActions
+            """.trimIndent()
         }
     }
 }

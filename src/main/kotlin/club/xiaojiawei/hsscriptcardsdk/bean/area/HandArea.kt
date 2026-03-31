@@ -3,6 +3,7 @@ package club.xiaojiawei.hsscriptcardsdk.bean.area
 import club.xiaojiawei.hsscriptbase.config.log
 import club.xiaojiawei.hsscriptcardsdk.bean.Card
 import club.xiaojiawei.hsscriptcardsdk.bean.Player
+import club.xiaojiawei.hsscriptcardsdk.cardparser.ParsedCardActionFactory
 import club.xiaojiawei.hsscriptcardsdk.data.CardInfoData
 import club.xiaojiawei.hsscriptcardsdk.enums.CardTypeEnum
 import kotlin.random.Random
@@ -44,6 +45,12 @@ class HandArea(allowLog: Boolean = false, player: Player, var parseCard: Boolean
             try {
                 if (card.cardType === CardTypeEnum.SPELL || card.isBattlecry) {
                     CardInfoData.indexCard(card.cardId)
+                    if (card.action.common) {
+                        ParsedCardActionFactory.getOrCreate(card.cardId)?.invoke()?.let {
+                            it.belongCard = card
+                            card.action = it
+                        }
+                    }
                 }
             } catch (e: Exception) {
                 log.error(e) { "解析手中卡牌出错" }
