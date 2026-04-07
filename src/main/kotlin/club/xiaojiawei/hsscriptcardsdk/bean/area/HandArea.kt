@@ -1,6 +1,8 @@
 package club.xiaojiawei.hsscriptcardsdk.bean.area
 
 import club.xiaojiawei.hsscriptbase.config.log
+import club.xiaojiawei.hsscriptbase.const.BuildInfo
+import club.xiaojiawei.hsscriptbase.const.SoftRunMode
 import club.xiaojiawei.hsscriptcardsdk.bean.Card
 import club.xiaojiawei.hsscriptcardsdk.bean.Player
 import club.xiaojiawei.hsscriptcardsdk.cardparser.ParsedCardActionFactory
@@ -38,6 +40,8 @@ class HandArea(allowLog: Boolean = false, player: Player, var parseCard: Boolean
         return null
     }
 
+    private var nativeTip = false
+
     override fun addCard(card: Card?, pos: Int) {
         super.addCard(card, pos)
         //        解析卡牌描述
@@ -45,7 +49,12 @@ class HandArea(allowLog: Boolean = false, player: Player, var parseCard: Boolean
             try {
                 if (card.cardType === CardTypeEnum.SPELL || card.isBattlecry) {
                     CardInfoData.indexCard(card.cardId)
-                    if (card.action.common) {
+                    if (BuildInfo.SOFT_RUN_MODE === SoftRunMode.NATIVE) {
+                        if (!nativeTip) {
+                            nativeTip = true
+                            log.warn { "native版软件不支持解析卡牌描述以生成CardAction类" }
+                        }
+                    } else if (card.action.common) {
                         ParsedCardActionFactory.getOrCreate(card.cardId)?.invoke()?.let {
                             it.belongCard = card
                             card.action = it
